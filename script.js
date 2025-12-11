@@ -34,45 +34,45 @@ if (typeof Stripe !== 'undefined' && typeof CONFIG !== 'undefined' && CONFIG.STR
     stripe = Stripe(CONFIG.STRIPE_PUBLISHABLE_KEY);
 }
 
-// Payment form handling (Stripe Checkout)
-const paymentForm = document.getElementById('paymentForm');
-if (paymentForm) {
-    paymentForm.addEventListener('submit', async function(e) {
+// Payment forms handling (Stripe Checkout)
+const checkoutForms = document.querySelectorAll('[data-checkout-form]');
+checkoutForms.forEach(form => {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const emailInput = document.getElementById('email');
-        const email = emailInput.value.trim();
-        const checkoutButton = document.getElementById('checkout-button');
-        const originalButtonText = checkoutButton.textContent;
+        const emailInput = form.querySelector('input[type="email"]');
+        const submitButton = e.submitter || form.querySelector('[data-checkout-button]');
+        const email = emailInput ? emailInput.value.trim() : '';
+        const originalButtonText = submitButton ? submitButton.textContent : '';
         
-        // Validate email
         if (!email || !email.includes('@')) {
-            showMessage('Please enter a valid email address.', 'error', paymentForm);
+            showMessage('Please enter a valid email address.', 'error', form);
             return;
         }
         
-        // Check if Stripe is initialized
         if (!stripe) {
-            showMessage('Payment system not configured. Please contact support.', 'error', paymentForm);
+            showMessage('Payment system not configured. Please contact support.', 'error', form);
             return;
         }
         
-        // Disable button and show loading state
-        checkoutButton.disabled = true;
-        checkoutButton.textContent = 'Processing...';
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = submitButton.dataset.loadingText || 'Processing...';
+        }
+        
+        const checkoutPayload = {
+            email: email,
+            priceId: (submitButton && submitButton.dataset.priceId) || CONFIG.PRODUCT.priceId,
+            productName: (submitButton && submitButton.dataset.productName) || CONFIG.PRODUCT.name,
+            productDescription: (submitButton && submitButton.dataset.productDescription) || CONFIG.PRODUCT.description
+        };
         
         try {
-            // Create checkout session via backend
             const response = await fetch(CONFIG.CREATE_CHECKOUT_ENDPOINT || '/api/create-checkout-session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    email: email,
-                    priceId: CONFIG.PRODUCT.priceId,
-                    productName: CONFIG.PRODUCT.name,
-                    productDescription: CONFIG.PRODUCT.description
-                })
+                body: JSON.stringify(checkoutPayload)
             });
             
             if (!response.ok) {
@@ -80,23 +80,21 @@ if (paymentForm) {
             }
             
             const session = await response.json();
-            
-            // Redirect to Stripe Checkout
-            const result = await stripe.redirectToCheckout({
-                sessionId: session.id
-            });
+            const result = await stripe.redirectToCheckout({ sessionId: session.id });
             
             if (result.error) {
                 throw new Error(result.error.message);
             }
         } catch (error) {
             console.error('Checkout error:', error);
-            showMessage(error.message || 'Something went wrong. Please try again later.', 'error', paymentForm);
-            checkoutButton.disabled = false;
-            checkoutButton.textContent = originalButtonText;
+            showMessage(error.message || 'Something went wrong. Please try again later.', 'error', form);
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         }
     });
-}
+});
 
 // Email-only subscription form
 const emailForm = document.getElementById('emailForm');
