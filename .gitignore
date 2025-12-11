@@ -31,8 +31,14 @@ config.local.js
 .env
 .env.local
 .env.production
+.env.*.local
 
 # API keys and secrets (never commit these)
 *.key
 *.pem
 secrets.json
+config.local.js
+
+# Node modules (if using backend)
+node_modules/
+package-lock.json
