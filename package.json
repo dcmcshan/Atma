@@ -1,0 +1,27 @@
+{
+  "name": "atma-landing",
+  "version": "1.0.0",
+  "description": "Atma - Distributed Ambient Audio Field System Landing Page",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "git push origin main"
+  },
+  "keywords": [
+    "atma",
+    "audio",
+    "esp32",
+    "ambisonic",
+    "distributed-audio"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "stripe": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

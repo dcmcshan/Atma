@@ -26,3 +26,13 @@ build/
 
 # Config files with sensitive data (if you add one)
 config.local.js
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# API keys and secrets (never commit these)
+*.key
+*.pem
+secrets.json

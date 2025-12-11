@@ -98,6 +98,17 @@ The Master Node (any jar or dedicated controller) performs:
 - **Meditation & Ritual**: Enchanted audio ecosystems for wellness spaces
 - **Interactive Installations**: Sound that responds to movement and proximity
 
+## 💳 Stripe Payment Integration
+
+This landing page includes Stripe payment integration for pre-orders. See [STRIPE_SETUP.md](STRIPE_SETUP.md) for complete setup instructions.
+
+**Quick Setup:**
+1. Get your Stripe keys from [Stripe Dashboard](https://dashboard.stripe.com/apikeys)
+2. Update `config.js` with your publishable key
+3. Create a Product/Price in Stripe and update the price ID
+4. Deploy backend API (see `api/` folder for examples)
+5. Set environment variables for secret key
+
 ## 🚀 Getting Started
 
 ### Website Setup
@@ -105,6 +116,29 @@ The Master Node (any jar or dedicated controller) performs:
 1. Clone this repository
 2. Open `index.html` in a web browser
 3. Or deploy to GitHub Pages (see below)
+
+### Stripe Payment Setup
+
+To enable payments, you need to:
+
+1. **Get Stripe Keys**:
+   - Sign up at [Stripe](https://stripe.com)
+   - Get your publishable key (`pk_test_...`) and secret key (`sk_test_...`)
+   - Update `config.js` with your publishable key
+
+2. **Create a Product in Stripe**:
+   - Go to Stripe Dashboard → Products
+   - Create a product "Atma Node" with your price
+   - Copy the Price ID (starts with `price_`)
+   - Update `config.js` with the Price ID
+
+3. **Set up Backend API**:
+   - Choose a platform: Vercel, Netlify, or your own server
+   - Deploy the API functions from `/api` or `/netlify/functions`
+   - Set environment variable: `STRIPE_SECRET_KEY`
+   - Update `config.js` with your API endpoint
+
+See [STRIPE_SETUP.md](STRIPE_SETUP.md) for detailed instructions.
 
 ### GitHub Pages Deployment
 
@@ -127,8 +161,17 @@ Atma/
 ├── index.html          # Main landing page
 ├── styles.css          # Styling and responsive design
 ├── script.js           # Interactive functionality
+├── config.js           # Configuration (Stripe keys, API endpoints)
 ├── README.md           # This file
 ├── ATMA.md             # Detailed technical documentation
+├── STRIPE_SETUP.md     # Stripe integration guide
+├── BACKEND_SETUP.md    # Backend API setup guide
+├── api/                # Backend API functions (Vercel)
+│   ├── create-checkout-session.js
+│   └── subscribe.js
+├── netlify/
+│   └── functions/     # Netlify serverless functions
+│       └── create-checkout-session.js
 ├── .github/
 │   └── workflows/
 │       └── pages.yml   # GitHub Pages deployment workflow
@@ -152,11 +195,15 @@ Edit the CSS variables in `styles.css`:
 - Modify features, specs, and use cases as needed
 - Replace device mockup with actual product images
 
-### Form Submission
-Currently, the form shows an alert. To connect to a backend:
-1. Update the form action in `index.html`
-2. Modify the form handler in `script.js`
-3. Add your backend endpoint
+### Stripe Configuration
+1. Update `config.js` with your Stripe publishable key
+2. Create a product/price in Stripe Dashboard
+3. Update the price ID in `config.js`
+4. Deploy backend API (see `api/` folder and `STRIPE_SETUP.md`)
+
+### Email Subscription
+- Update `config.js` with your email service API endpoint
+- Or use the separate email-only form (no payment required)
 
 ## 📚 Documentation
 

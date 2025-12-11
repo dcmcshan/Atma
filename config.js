@@ -4,24 +4,26 @@
 
 const CONFIG = {
     // Stripe Publishable Key - safe to use in frontend
-    // Replace with your actual Stripe publishable key (starts with pk_)
-    STRIPE_PUBLISHABLE_KEY: 'pk_test_...', // Replace with your Stripe publishable key
+    // Get from: https://dashboard.stripe.com/apikeys
+    // Replace with your actual Stripe publishable key (starts with pk_test_ or pk_live_)
+    STRIPE_PUBLISHABLE_KEY: 'pk_test_...', // ⚠️ REPLACE WITH YOUR KEY
     
     // Stripe Secret Key - MUST be used only in backend/server-side code
     // Do NOT expose this in frontend JavaScript
     // STRIPE_SECRET_KEY: 'sk_test_...', // Use this in your backend only
     
     // API endpoints for Stripe integration
-    CREATE_CHECKOUT_ENDPOINT: '/api/create-checkout-session', // Create checkout session
-    CREATE_CUSTOMER_ENDPOINT: '/api/create-customer', // Create customer (for email list)
+    // For GitHub Pages: Use absolute URL to your backend API
+    // For Vercel/Netlify: Use relative path like '/api/create-checkout-session'
+    CREATE_CHECKOUT_ENDPOINT: '/api/create-checkout-session', // Update to your backend URL
     
     // Product/Price configuration
     PRODUCT: {
         name: 'Atma Node',
         description: 'Distributed Ambient Audio Field System Node',
-        // Price ID from Stripe Dashboard (create a product/price first)
-        priceId: 'price_...', // Replace with your Stripe Price ID
-        amount: 9900, // Amount in cents ($99.00)
+        // Get Price ID from: Stripe Dashboard → Products → Your Product → Pricing
+        priceId: 'price_...', // ⚠️ REPLACE WITH YOUR STRIPE PRICE ID
+        amount: 9900, // Amount in cents ($99.00) - for display only
         currency: 'usd'
     },
     
