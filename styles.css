@@ -116,6 +116,15 @@ body {
     color: var(--text-primary);
 }
 
+.hero-eyebrow {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
 .gradient-text {
     background: var(--gradient);
     -webkit-background-clip: text;
@@ -130,10 +139,47 @@ body {
     line-height: 1.8;
 }
 
+.hero-benefits {
+    list-style: none;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.hero-benefits li {
+    font-size: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.hero-benefits strong {
+    color: var(--text-primary);
+}
+
 .hero-cta {
     display: flex;
     gap: 1rem;
     margin-bottom: 3rem;
+}
+
+.hero-form {
+    margin-bottom: 1.5rem;
+}
+
+.btn-link {
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 1rem 0;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: var(--primary-dark);
 }
 
 .btn {
@@ -177,6 +223,53 @@ body {
 
 .stat {
     text-align: center;
+}
+
+.hero-proof {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.proof-item {
+    background: var(--bg-secondary);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.proof-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.proof-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+.trust-bar {
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.logo-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 .stat-number {
@@ -249,6 +342,202 @@ body {
 .features {
     padding: 6rem 0;
     background: var(--bg-primary);
+}
+
+/* Momentum Section */
+.momentum {
+    padding: 4rem 0;
+    background: var(--bg-secondary);
+}
+
+.momentum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.momentum-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.momentum-card.highlight {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+.momentum-card ul {
+    margin-top: 1rem;
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.metric-row {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.metric {
+    flex: 1;
+    min-width: 100px;
+}
+
+.metric span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.metric small {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.momentum-card.quote {
+    background: var(--bg-dark);
+    color: white;
+    border-color: transparent;
+}
+
+.momentum-card.quote p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.quote-author span {
+    display: block;
+    font-weight: 600;
+}
+
+.quote-author small {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Sales Highlights */
+.sales-highlights {
+    padding: 6rem 0 4rem;
+    background: var(--bg-primary);
+}
+
+.sales-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.sales-card {
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    background: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.sales-card ul {
+    margin-top: 1rem;
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Pricing Section */
+.pricing {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.pricing-card {
+    background: #fff;
+    border-radius: 1.25rem;
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.pricing-card.highlight {
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-10px);
+}
+
+.plan-badge {
+    display: inline-flex;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary-dark);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.plan-badge.accent {
+    background: rgba(16, 185, 129, 0.15);
+    color: #047857;
+}
+
+.price-tag {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.price-tag span {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.price-tag small {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+}
+
+.pricing-list {
+    list-style: none;
+    padding: 0;
+}
+
+.pricing-list li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pricing-list li:before {
+    content: "✓";
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.micro-copy {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
 }
 
 .section-header {
@@ -674,7 +963,11 @@ body {
         flex-direction: column;
     }
 
-    .hero-stats {
+    .hero-proof {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .logo-strip {
         justify-content: center;
     }
 
@@ -684,8 +977,15 @@ body {
 
     .features-grid,
     .testimonials-grid,
-    .tech-details {
+    .tech-details,
+    .sales-grid,
+    .pricing-grid,
+    .momentum-grid {
         grid-template-columns: 1fr;
+    }
+
+    .pricing-card.highlight {
+        transform: none;
     }
 
     .architecture-step {
