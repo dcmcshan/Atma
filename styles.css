@@ -576,6 +576,24 @@ body {
     cursor: not-allowed;
 }
 
+.payment-section {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.email-subscribe-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.divider-text {
+    text-align: center;
+    margin: 1rem 0;
+    opacity: 0.8;
+    font-size: 0.875rem;
+}
+
 .cta-features {
     display: flex;
     justify-content: center;

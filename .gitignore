@@ -23,3 +23,6 @@ build/
 # Environment variables
 .env
 .env.local
+
+# Config files with sensitive data (if you add one)
+config.local.js

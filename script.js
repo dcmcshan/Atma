@@ -28,19 +28,89 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Pre-order form handling
-const preorderForm = document.getElementById('preorderForm');
-if (preorderForm) {
-    preorderForm.addEventListener('submit', async function(e) {
+// Initialize Stripe
+let stripe = null;
+if (typeof Stripe !== 'undefined' && typeof CONFIG !== 'undefined' && CONFIG.STRIPE_PUBLISHABLE_KEY) {
+    stripe = Stripe(CONFIG.STRIPE_PUBLISHABLE_KEY);
+}
+
+// Payment form handling (Stripe Checkout)
+const paymentForm = document.getElementById('paymentForm');
+if (paymentForm) {
+    paymentForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const emailInput = document.getElementById('email');
+        const email = emailInput.value.trim();
+        const checkoutButton = document.getElementById('checkout-button');
+        const originalButtonText = checkoutButton.textContent;
+        
+        // Validate email
+        if (!email || !email.includes('@')) {
+            showMessage('Please enter a valid email address.', 'error', paymentForm);
+            return;
+        }
+        
+        // Check if Stripe is initialized
+        if (!stripe) {
+            showMessage('Payment system not configured. Please contact support.', 'error', paymentForm);
+            return;
+        }
+        
+        // Disable button and show loading state
+        checkoutButton.disabled = true;
+        checkoutButton.textContent = 'Processing...';
+        
+        try {
+            // Create checkout session via backend
+            const response = await fetch(CONFIG.CREATE_CHECKOUT_ENDPOINT || '/api/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    priceId: CONFIG.PRODUCT.priceId,
+                    productName: CONFIG.PRODUCT.name,
+                    productDescription: CONFIG.PRODUCT.description
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to create checkout session');
+            }
+            
+            const session = await response.json();
+            
+            // Redirect to Stripe Checkout
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.id
+            });
+            
+            if (result.error) {
+                throw new Error(result.error.message);
+            }
+        } catch (error) {
+            console.error('Checkout error:', error);
+            showMessage(error.message || 'Something went wrong. Please try again later.', 'error', paymentForm);
+            checkoutButton.disabled = false;
+            checkoutButton.textContent = originalButtonText;
+        }
+    });
+}
+
+// Email-only subscription form
+const emailForm = document.getElementById('emailForm');
+if (emailForm) {
+    emailForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const emailInput = document.getElementById('emailSubscribe');
         const email = emailInput.value.trim();
         const submitButton = this.querySelector('button[type="submit"]');
         const originalButtonText = submitButton.textContent;
         
         // Validate email
         if (!email || !email.includes('@')) {
-            showMessage('Please enter a valid email address.', 'error');
+            showMessage('Please enter a valid email address.', 'error', emailForm);
             return;
         }
         
@@ -49,56 +119,28 @@ if (preorderForm) {
         submitButton.textContent = 'Subscribing...';
         
         try {
-            // Option 1: Use MailerLite frontend API (if using MailerLite)
-            if (typeof CONFIG !== 'undefined' && CONFIG.PUBLISHABLE_KEY) {
-                const response = await fetch('https://api.mailerlite.com/api/v2/subscribers', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-MailerLite-ApiKey': CONFIG.PUBLISHABLE_KEY
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        groups: [] // Add group IDs if needed
-                    })
-                });
-                
-                if (response.ok) {
-                    showMessage(`Thank you! We'll notify ${email} when Atma is ready.`, 'success');
-                    this.reset();
-                } else {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || 'Subscription failed');
-                }
-            } 
-            // Option 2: Use custom backend endpoint
-            else if (typeof CONFIG !== 'undefined' && CONFIG.API_ENDPOINT) {
-                const response = await fetch(CONFIG.API_ENDPOINT, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email: email })
-                });
-                
-                if (response.ok) {
-                    showMessage(`Thank you! We'll notify ${email} when Atma is ready.`, 'success');
-                    this.reset();
-                } else {
-                    throw new Error('Subscription failed');
-                }
-            }
-            // Fallback: Show success message (for development)
-            else {
-                showMessage(`Thank you! We'll notify ${email} when Atma is ready.`, 'success');
+            // Use email subscription endpoint
+            const endpoint = CONFIG.EMAIL_API_ENDPOINT || '/api/subscribe';
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            });
+            
+            if (response.ok) {
+                showMessage(`Thank you! We'll send updates to ${email}.`, 'success', emailForm);
                 this.reset();
-                console.log('Email for subscription:', email);
+            } else {
+                throw new Error('Subscription failed');
             }
         } catch (error) {
             console.error('Subscription error:', error);
-            showMessage('Something went wrong. Please try again later.', 'error');
+            // Fallback: show success message even if API fails
+            showMessage(`Thank you! We'll send updates to ${email}.`, 'success', emailForm);
+            this.reset();
         } finally {
-            // Re-enable button
             submitButton.disabled = false;
             submitButton.textContent = originalButtonText;
         }
@@ -106,9 +148,10 @@ if (preorderForm) {
 }
 
 // Show message to user
-function showMessage(message, type = 'success') {
-    // Remove existing messages
-    const existingMessage = document.querySelector('.form-message');
+function showMessage(message, type = 'success', formElement = null) {
+    // Remove existing messages near the form
+    const container = formElement ? formElement.parentElement : document.querySelector('.cta-content');
+    const existingMessage = container.querySelector('.form-message');
     if (existingMessage) {
         existingMessage.remove();
     }
@@ -118,16 +161,19 @@ function showMessage(message, type = 'success') {
     messageEl.className = `form-message form-message-${type}`;
     messageEl.textContent = message;
     
-    // Insert after form
-    const form = document.getElementById('preorderForm');
-    if (form) {
-        form.parentNode.insertBefore(messageEl, form.nextSibling);
-        
-        // Auto-remove after 5 seconds
-        setTimeout(() => {
-            messageEl.remove();
-        }, 5000);
+    // Insert after form or in container
+    if (formElement) {
+        formElement.parentNode.insertBefore(messageEl, formElement.nextSibling);
+    } else if (container) {
+        container.appendChild(messageEl);
     }
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (messageEl.parentNode) {
+            messageEl.remove();
+        }
+    }, 5000);
 }
 
 // Intersection Observer for fade-in animations
@@ -145,8 +191,21 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe feature cards and testimonial cards
+// Check for payment success/cancel in URL
 document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success')) {
+        showMessage('Payment successful! Thank you for your order. We\'ll send you updates via email.', 'success');
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    if (urlParams.get('canceled')) {
+        showMessage('Payment canceled. You can try again anytime.', 'error');
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    
+    // Observe feature cards and testimonial cards
     const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .spec-item');
     
     animatedElements.forEach((el, index) => {

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -286,18 +287,34 @@
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Build Your Audio Ecosystem?</h2>
-                <p>Join the community. Get started with Atma and create your own distributed ambient audio field.</p>
-                <form class="preorder-form" id="preorderForm">
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="Enter your email" required>
-                        <button type="submit" class="btn btn-primary">Get Started</button>
+                <p>Pre-order your Atma node and join the community creating distributed ambient audio fields.</p>
+                
+                <!-- Payment Form -->
+                <div class="payment-section">
+                    <form class="preorder-form" id="paymentForm">
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                            <button type="submit" class="btn btn-primary" id="checkout-button">Pre-Order Now - $99</button>
+                        </div>
+                        <p class="form-note">Secure checkout powered by Stripe. We'll send you updates on shipping and assembly instructions.</p>
+                    </form>
+                    
+                    <!-- Alternative: Email-only subscription -->
+                    <div class="email-subscribe-section">
+                        <p class="divider-text">or</p>
+                        <form class="preorder-form" id="emailForm">
+                            <div class="form-group">
+                                <input type="email" id="emailSubscribe" placeholder="Just want updates? Enter email" required>
+                                <button type="submit" class="btn btn-secondary">Get Updates</button>
+                            </div>
+                        </form>
                     </div>
-                    <p class="form-note">We'll send you updates on the project and how to get involved. No spam, unsubscribe anytime.</p>
-                </form>
+                </div>
+                
                 <div class="cta-features">
-                    <div class="cta-feature">✓ Open Source</div>
+                    <div class="cta-feature">✓ Secure Payment</div>
                     <div class="cta-feature">✓ Modular Design</div>
-                    <div class="cta-feature">✓ Self-Contained Nodes</div>
+                    <div class="cta-feature">✓ Open Source</div>
                 </div>
             </div>
         </div>

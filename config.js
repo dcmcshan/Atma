@@ -3,23 +3,31 @@
 // Use environment variables or a backend service for secret keys
 
 const CONFIG = {
-    // Publishable key - safe to use in frontend (if service supports it)
-    // For MailerLite, use the API key here (but ideally use backend)
-    PUBLISHABLE_KEY: 'mk_1Sd0HQB4s5NBjXmnc6KJqsDq',
+    // Stripe Publishable Key - safe to use in frontend
+    // Replace with your actual Stripe publishable key (starts with pk_)
+    STRIPE_PUBLISHABLE_KEY: 'pk_test_...', // Replace with your Stripe publishable key
     
-    // Secret key - MUST be used only in backend/server-side code
+    // Stripe Secret Key - MUST be used only in backend/server-side code
     // Do NOT expose this in frontend JavaScript
-    // SECRET_KEY: 'mk_1Sd0IEB4s5NBjXmnMt1QLK5U', // Use this in your backend only
+    // STRIPE_SECRET_KEY: 'sk_test_...', // Use this in your backend only
     
-    // API endpoint for form submissions (recommended approach)
-    // Create a serverless function or backend API that uses the secret key
-    API_ENDPOINT: null, // Set to your backend endpoint, e.g., '/api/subscribe' or 'https://your-api.com/subscribe'
+    // API endpoints for Stripe integration
+    CREATE_CHECKOUT_ENDPOINT: '/api/create-checkout-session', // Create checkout session
+    CREATE_CUSTOMER_ENDPOINT: '/api/create-customer', // Create customer (for email list)
     
-    // Service configuration
-    SERVICE: 'mailerlite', // mailerlite, mailchimp, etc.
+    // Product/Price configuration
+    PRODUCT: {
+        name: 'Atma Node',
+        description: 'Distributed Ambient Audio Field System Node',
+        // Price ID from Stripe Dashboard (create a product/price first)
+        priceId: 'price_...', // Replace with your Stripe Price ID
+        amount: 9900, // Amount in cents ($99.00)
+        currency: 'usd'
+    },
     
-    // MailerLite Group ID (optional - add subscribers to specific group)
-    GROUP_ID: null
+    // Email subscription (optional - separate from payment)
+    EMAIL_SERVICE: null, // 'mailerlite', 'mailchimp', etc.
+    EMAIL_API_ENDPOINT: '/api/subscribe'
 };
 
 // Export for use in other scripts
