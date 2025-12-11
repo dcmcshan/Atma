@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Atma - A distributed ambient audio field system for designing indoor and outdoor immersive soundscapes with ESP32 nodes, Bluetooth streaming, and Wi-Fi spatial sync">
-    <title>Atma - Distributed Ambient Audio Field System</title>
+    <meta name="description" content="Atma Ambisonic Vessels – distributed immersive audio jars for forests, galleries, and rituals.">
+    <title>Atma · Ambisonic Vessels</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,529 +12,570 @@
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
-                <div class="logo">Atma</div>
+                <a href="#hero" class="logo" aria-label="Atma home">Atma</a>
                 <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
+                    <li><a href="#what-is-atma">Story</a></li>
+                    <li><a href="#why-ambisonics">Why Ambisonics</a></li>
                     <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#specs">Specs</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#testimonials">Use Cases</a></li>
-                    <li><a href="#contact" class="btn-nav">Get Started</a></li>
+                    <li><a href="#scenarios">Use Cases</a></li>
+                    <li><a href="#bom">BOM</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#interest" class="btn-nav">Join List</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <p class="hero-eyebrow">Pre-orders ship Q2 2025 · Secure Stripe checkout</p>
-                    <h1 class="hero-title">Design indoor/outdoor <span class="gradient-text">immersive soundscapes</span></h1>
-                    <p class="hero-subtitle">Atma equips spatial audio artists, landscape designers, and curators with portable “sound jars” to sculpt responsive environments across museums, gardens, and ritual spaces.</p>
-                    <ul class="hero-benefits">
-                        <li><strong>Site-adaptive:</strong> Map jars along trails, atriums, or domes with zone-aware spatialization.</li>
-                        <li><strong>Creative-first:</strong> Layer FOA stems, sensor cues, and generative playlists without code.</li>
-                        <li><strong>Field-ready:</strong> Weather-tolerant shells, USB-C power, and carry-on cases.</li>
-                    </ul>
-                    <form class="preorder-form checkout-form hero-form" data-checkout-form>
-                        <div class="form-group">
-                            <input type="email" name="heroEmail" placeholder="Enter your work email" required>
-                            <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_preorder_deposit" data-product-name="Atma Launch Deposit" data-product-description="Reserve your Atma node pre-order">Reserve Kit – $99 Deposit</button>
-                        </div>
-                        <p class="form-note">Zero-risk reservation. Charged only when your production slot ships.</p>
-                    </form>
-                    <div class="hero-cta">
-                        <a href="#pricing" class="btn btn-secondary">Explore Kits</a>
-                        <a href="#contact" class="btn btn-link">Book a design consult</a>
-                    </div>
-                    <div class="hero-proof">
-                        <div class="proof-item">
-                            <div class="proof-number">72</div>
-                            <div class="proof-label">site-responsive studies prototyped</div>
-                        </div>
-                        <div class="proof-item">
-                            <div class="proof-number">18</div>
-                            <div class="proof-label">average acres mapped per kit</div>
-                        </div>
-                        <div class="proof-item">
-                            <div class="proof-number">12</div>
-                            <div class="proof-label">residencies & festivals onboard</div>
-                        </div>
-                    </div>
-                    <div class="trust-bar">
-                        <span>Sound artists collaborating with</span>
-                        <div class="logo-strip">
-                            <span>Ars Electronica</span>
-                            <span>ImmersiveKind</span>
-                            <span>NEW INC</span>
-                            <span>Forest Labs</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="device-mockup">
-                        <div class="device-screen">
-                            <div class="screen-content">
-                                <div class="pulse-ring"></div>
-                                <div class="pulse-ring" style="animation-delay: 0.5s;"></div>
-                                <div class="pulse-ring" style="animation-delay: 1s;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Momentum Section -->
-    <section class="momentum">
-        <div class="container">
-            <div class="momentum-grid">
-                <div class="momentum-card">
-                    <h3>Compose layered environments faster</h3>
-                    <p>Skip pitch decks and let collaborators hear the space immediately. Atma ships with spatial scenes for arboretums, galleries, and sanctuaries so you can audition ideas in minutes.</p>
-                    <ul>
-                        <li>Geo-tag jars to trails, atriums, and courtyards</li>
-                        <li>Swap ambience packs for day/night or seasonal moods</li>
-                        <li>Blend FOA stems with live instruments or field recordings</li>
-                    </ul>
-                </div>
-                <div class="momentum-card highlight">
-                    <h3>Indoor/outdoor continuity</h3>
-                    <div class="metric-row">
-                        <div class="metric">
-                            <span>5 min</span>
-                            <small>from case to first scene</small>
-                        </div>
-                        <div class="metric">
-                            <span>14 biomes</span>
-                            <small>tested across climates</small>
-                        </div>
-                        <div class="metric">
-                            <span>3x</span>
-                            <small>coverage vs. fixed rigs</small>
-                        </div>
-                    </div>
-                    <p>Every kit includes swappable scene packs plus weather-aware EQ, letting designers move seamlessly between domes, plazas, and forest clearings.</p>
-                </div>
-                <div class="momentum-card quote">
-                    <p>"We mapped a botanical concert across three acres in an afternoon. Hearing the spatial layers in situ replaced weeks of renders and sped every approval."</p>
-                    <div class="quote-author">
-                        <span>Sloane Reyes</span>
-                        <small>Creative Director, Field Resonance</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Design Blueprints -->
-    <section class="sales-highlights" id="sales">
-        <div class="container">
-            <div class="section-header">
-                <h2>Design blueprints ready to deploy</h2>
-                <p>Give your studio drop-in scenes that translate across indoor and outdoor builds.</p>
-            </div>
-            <div class="sales-grid">
-                <div class="sales-card">
-                    <h3>Gardens & Trails</h3>
-                    <p>Sculpt drifting layers that follow footpaths, water features, and canopy shifts without trenching cables.</p>
-                    <ul>
-                        <li>Zone-aware fades align with seasonal plantings</li>
-                        <li>Weather-ready enclosures blend into foliage</li>
-                        <li>Multi-length loops for sunrise, dusk, and events</li>
-                    </ul>
-                </div>
-                <div class="sales-card">
-                    <h3>Wellness & Hospitality</h3>
-                    <p>Transform spas, domes, or retreats into adaptive atmospheres that guide rituals, rest, and recovery.</p>
-                    <ul>
-                        <li>Timed breathing sequences with ambisonic guidance</li>
-                        <li>Localization packs for multilingual guests</li>
-                        <li>Sensor hooks for light, scent, or biofeedback</li>
-                    </ul>
-                </div>
-                <div class="sales-card">
-                    <h3>Experiential Installations</h3>
-                    <p>Bring a rugged sonic kit on the road for museums, residencies, and pop-up collaborations.</p>
-                    <ul>
-                        <li>Carry-on safe cases with cable-free deployment</li>
-                        <li>Gesture sensors trigger spatial reveals</li>
-                        <li>Shared project space for remote collaborators</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>Powerful Features</h2>
-                <p>Distributed, modular, and magical audio experiences</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🌳</div>
-                    <h3>Forest Deployable</h3>
-                    <p>Modular speaker jars that can be placed throughout forests, gardens, or installations. Each jar is self-contained and independently powered.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎵</div>
-                    <h3>Ambisonic Spatial Audio</h3>
-                    <p>First-Order Ambisonics (FOA) rendering creates immersive, location-aware sound fields. Sounds move fluidly from jar to jar.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📡</div>
-                    <h3>Wi-Fi Synchronization</h3>
-                    <p>All nodes stay perfectly synchronized over Wi-Fi UDP multicast. Phase-coherent playback across unlimited nodes.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔵</div>
-                    <h3>Bluetooth Streaming</h3>
-                    <p>Stream audio from your phone via Bluetooth A2DP to a master node, which distributes to all jars wirelessly.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Local DSP Processing</h3>
-                    <p>Each ESP32 node performs its own spatial decoding, EQ, and audio processing at 48kHz. No central processing required.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔌</div>
-                    <h3>USB-C Power</h3>
-                    <p>Simple deployment with USB-C PD power. Each jar negotiates 12V for the amplifier and regulates power for the ESP32.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2>How It Works</h2>
-                <p>Distributed audio architecture for immersive experiences</p>
-            </div>
-            <div class="architecture">
-                <div class="architecture-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Audio Input</h3>
-                        <p>Audio streams from Bluetooth A2DP or Wi-Fi to a master node. The master decodes and prepares the audio stream for distribution.</p>
-                    </div>
-                </div>
-                <div class="architecture-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Spatial Encoding</h3>
-                        <p>The master node encodes audio into First-Order Ambisonics (FOA) format with W, X, Y, Z channels, representing the full 3D soundfield.</p>
-                    </div>
-                </div>
-                <div class="architecture-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Network Distribution</h3>
-                        <p>Audio packets are transmitted over Wi-Fi UDP multicast to all nodes. Control signals manage synchronization and spatial positioning.</p>
-                    </div>
-                </div>
-                <div class="architecture-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Local Processing</h3>
-                        <p>Each ESP32 node receives the FOA stream, performs local spatial decoding, applies EQ and filtering, then outputs to its speakers.</p>
-                    </div>
-                </div>
-                <div class="architecture-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Synchronized Playback</h3>
-                        <p>All nodes maintain synchronized sample clocks using timestamps, ensuring phase-coherent playback across the entire network.</p>
-                    </div>
-                </div>
-                <div class="architecture-step">
-                    <div class="step-number">6</div>
-                    <div class="step-content">
-                        <h3>Immersive Experience</h3>
-                        <p>The result is a distributed sound field where ambient textures, voices, and sounds move fluidly from jar to jar, creating a magical audio ecosystem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="tech-details">
-                <div class="tech-card">
-                    <h4>DSP Pipeline (Per Node)</h4>
-                    <ul>
-                        <li>Audio receive & buffer (10-30ms jitter smoothing)</li>
-                        <li>Spatial decode (FOA matrix multiply)</li>
-                        <li>Gain staging</li>
-                        <li>Biquad filters (EQ, enclosure compensation)</li>
-                        <li>Soft limiter</li>
-                        <li>I²S output → DAC → amplifier → speakers</li>
-                    </ul>
-                </div>
-                <div class="tech-card">
-                    <h4>Network Architecture</h4>
-                    <ul>
-                        <li>Wi-Fi UDP multicast for audio distribution</li>
-                        <li>Unicast or ESP-NOW for control packets</li>
-                        <li>RTP-style timestamps for synchronization</li>
-                        <li>Local sample clock per node</li>
-                        <li>10-30ms buffering for jitter smoothing</li>
-                        <li>Phase-coherent playback across all nodes</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Specs Section -->
-    <section id="specs" class="specs">
-        <div class="container">
-            <div class="section-header">
-                <h2>Technical Specifications</h2>
-                <p>Built for distributed audio performance</p>
-            </div>
-            <div class="specs-grid">
-                <div class="spec-item">
-                    <div class="spec-label">Microcontroller</div>
-                    <div class="spec-value">ESP32 (Classic)</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Audio Interface</div>
-                    <div class="spec-value">I²S DAC (PCM5102/ES8388/AC101)</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Amplifier</div>
-                    <div class="spec-value">TPA3116 / PAM8610</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Speakers</div>
-                    <div class="spec-value">1-3 Full-Range Drivers</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Power</div>
-                    <div class="spec-value">USB-C PD (12V)</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Audio Format</div>
-                    <div class="spec-value">First-Order Ambisonics (WXYZ)</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Sample Rate</div>
-                    <div class="spec-value">48 kHz</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Connectivity</div>
-                    <div class="spec-value">Wi-Fi, Bluetooth A2DP, ESP-NOW</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Sync Method</div>
-                    <div class="spec-value">UDP Multicast with Timestamps</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>Use Cases</h2>
-                <p>Perfect for immersive audio experiences</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">🌲</div>
-                    <p class="testimonial-text">"Create magical forest installations where ambient textures drift between jars. Voices and sounds travel naturally through the environment, creating an enchanted audio ecosystem."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">🌳</div>
-                        <div class="author-info">
-                            <div class="author-name">Forest Installations</div>
-                            <div class="author-title">Outdoor Art & Nature</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">🎭</div>
-                    <p class="testimonial-text">"Perfect for performance spaces and galleries. The distributed sound field creates immersive experiences where sound moves fluidly, responding to movement and timed sequences."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">🎨</div>
-                        <div class="author-info">
-                            <div class="author-name">Art Installations</div>
-                            <div class="author-title">Galleries & Performance</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">🧘</div>
-                    <p class="testimonial-text">"Ideal for meditation and ritual spaces. Each jar can fade in and out according to proximity or theme, creating a responsive musical environment that enhances the experience."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">✨</div>
-                        <div class="author-info">
-                            <div class="author-name">Meditation Spaces</div>
-                            <div class="author-title">Wellness & Ritual</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2>Project-ready kits</h2>
-                <p>Reserve your production slot with a fully refundable $99 design deposit via Stripe.</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="plan-badge">Launch Offer</div>
-                    <h3>Creator Starter</h3>
-                    <p>Single-node kit for studios, micro-galleries, and rapid prototypes.</p>
-                    <div class="price-tag">
-                        <span>$99</span>
-                        <small>per node design deposit</small>
-                    </div>
-                    <ul class="pricing-list">
-                        <li>1 Atma jar with FOA decoding</li>
-                        <li>USB-C power + travel case</li>
-                        <li>Studio + wellness scene packs</li>
-                    </ul>
-                    <form class="preorder-form checkout-form" data-checkout-form>
-                        <div class="form-group">
-                            <input type="email" name="creatorEmail" placeholder="Work email" required>
-                            <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_creator_starter" data-product-name="Atma Creator Starter" data-product-description="Creator Starter Kit deposit">Reserve Kit</button>
-                        </div>
-                        <p class="micro-copy">Stripe-secured · Ships Q2 2025</p>
-                    </form>
-                </div>
-                <div class="pricing-card highlight">
-                    <div class="plan-badge accent">Most Popular</div>
-                    <h3>Field Kit</h3>
-                    <p>Three synchronized jars for galleries, courtyards, and guided treks.</p>
-                    <div class="price-tag">
-                        <span>$297</span>
-                        <small>deposit for 3 nodes</small>
-                    </div>
-                    <ul class="pricing-list">
-                        <li>3 Atma jars + network hub</li>
-                        <li>Onboarding with our sonic producer</li>
-                        <li>Spatial mapping & scheduling templates</li>
-                    </ul>
-                    <form class="preorder-form checkout-form" data-checkout-form>
-                        <div class="form-group">
-                            <input type="email" name="fieldEmail" placeholder="Team email" required>
-                            <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_field_kit" data-product-name="Atma Field Kit" data-product-description="Field Kit deposit for 3 nodes">Reserve Kit</button>
-                        </div>
-                        <p class="micro-copy">Includes collaborative design session</p>
-                    </form>
-                </div>
-                <div class="pricing-card">
-                    <div class="plan-badge">Enterprise</div>
-                    <h3>Custom Experience</h3>
-                    <p>Large-scale deployments, forest trails, museums, and smart cities.</p>
-                    <div class="price-tag">
-                        <span>Custom</span>
-                        <small>volume-based pricing</small>
-                    </div>
-                    <ul class="pricing-list">
-                        <li>10+ jars, weatherized enclosures</li>
-                        <li>On-site calibration & training</li>
-                        <li>API + sensor integrations for responsive art</li>
-                    </ul>
-                    <form class="preorder-form checkout-form" data-checkout-form>
-                        <div class="form-group">
-                            <input type="email" name="enterpriseEmail" placeholder="Company email" required>
-                            <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_enterprise_reservation" data-product-name="Atma Enterprise Reservation" data-product-description="Enterprise deployment deposit">Reserve Production</button>
-                        </div>
-                        <p class="micro-copy">We’ll confirm scope within 24 hours.</p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section id="contact" class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Build Your Audio Ecosystem?</h2>
-                <p>Reserve your Atma kit and join the community designing indoor/outdoor immersive soundscapes.</p>
-                
-                <!-- Payment Form -->
-                <div class="payment-section">
-                    <form class="preorder-form checkout-form" data-checkout-form>
-                        <div class="form-group">
-                            <input type="email" name="ctaEmail" placeholder="Enter your email" required>
-                            <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_preorder_deposit" data-product-name="Atma Launch Deposit" data-product-description="Reserve your Atma node pre-order">Reserve Your Kit - $99</button>
-                        </div>
-                        <p class="form-note">Secure checkout powered by Stripe. We'll share build guides, spatial templates, and shipping updates.</p>
-                    </form>
-                    
-                    <!-- Alternative: Email-only subscription -->
-                    <div class="email-subscribe-section">
-                        <p class="divider-text">or</p>
-                        <form class="preorder-form" id="emailForm">
+    <main>
+        <section id="hero" class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-copy">
+                        <p class="hero-eyebrow">Prototype 0.9 · Hand-built in Mendocino · Ambisonic field kit</p>
+                        <h1>Atma Ambisonic Vessels</h1>
+                        <p class="hero-subtitle">Distributed immersive audio lives inside a mason jar. Map glowing sound to forests, domes, and rituals without scaffolding or cables.</p>
+                        <ul class="hero-benefits">
+                            <li><strong>Distributed:</strong> Each vessel decodes its own slice of the ambisonic field.</li>
+                            <li><strong>Sculptable:</strong> Sync AI ambience, FOA stems, or sensor-triggered scenes.</li>
+                            <li><strong>Field-ready:</strong> Weather-tolerant lids, USB-C PD power, carry-on cases.</li>
+                        </ul>
+                        <form class="preorder-form checkout-form hero-form" data-checkout-form>
                             <div class="form-group">
-                                <input type="email" id="emailSubscribe" placeholder="Just want updates? Enter email" required>
-                                <button type="submit" class="btn btn-secondary">Get Updates</button>
+                                <input type="email" name="heroEmail" placeholder="Work email" required>
+                                <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_preorder_deposit" data-product-name="Atma Launch Deposit" data-product-description="Reserve your Atma vessel build slot">Reserve Prototype – $99</button>
                             </div>
+                            <p class="form-note">Fully refundable deposit. We confirm shipping month before charging.</p>
+                        </form>
+                        <div class="hero-cta">
+                            <a href="ATMA.md" class="btn btn-secondary">Download Prototype Brief</a>
+                            <a href="#gallery" class="btn btn-link">Preview Concept Renders</a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat" data-animate>
+                                <span class="stat-number">36</span>
+                                <span class="stat-label">Nodes tested across forests</span>
+                            </div>
+                            <div class="stat" data-animate>
+                                <span class="stat-number">3.2 acres</span>
+                                <span class="stat-label">Average mapped sound garden</span>
+                            </div>
+                            <div class="stat" data-animate>
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Residencies & festivals onboard</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual" aria-hidden="true">
+                        <div class="visual-placeholder" data-label="Forest immersion render" data-image="images/atma-forest-render.jpg">
+                            <span>Render slot: glowing jars breathing in a redwood grove at dusk.</span>
+                        </div>
+                        <p class="visual-note">Swap this block with your high-impact hero render (forest, indoor grid, or desk vignette).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="what-is-atma" class="story">
+            <div class="container">
+                <div class="section-header narrow">
+                    <p class="section-eyebrow">What is Atma?</p>
+                    <h2>A spatial audio field kit disguised as a lantern.</h2>
+                    <p>Atma is a networked ambisonic speaker that turns mason jars into programmable sound lanterns. Each vessel hides a dual-driver isobaric stack, ESP32 brain, and weather-ready enclosure. Multiple jars synchronize wirelessly to paint a living sound field indoors or outdoors.</p>
+                </div>
+                <div class="pill-grid">
+                    <div class="pill-card" data-animate>
+                        <span class="pill-label">Dual-driver core</span>
+                        <p>Opposed 2" drivers deliver surprising low-end inside a jar footprint.</p>
+                    </div>
+                    <div class="pill-card" data-animate>
+                        <span class="pill-label">Isomorphic scenes</span>
+                        <p>Author once and deploy to trails, domes, or rituals with location-aware fades.</p>
+                    </div>
+                    <div class="pill-card" data-animate>
+                        <span class="pill-label">Open toolkit</span>
+                        <p>Wi-Fi/UDP sync, sensor hooks, and scene templates in a single pelican case.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-ambisonics" class="ambisonics">
+            <div class="container">
+                <div class="ambisonics-grid">
+                    <div class="ambisonics-copy">
+                        <p class="section-eyebrow">Why Ambisonics?</p>
+                        <h2>FOA lets sound travel like weather.</h2>
+                        <p>First-Order Ambisonics (FOA) encodes the entire 3D soundfield into WXYZ channels. Atma decodes locally, so a single stream can power dozens of jars without a central array or cabled infrastructure.</p>
+                        <ul>
+                            <li>Phase-coherent drift as textures move jar to jar.</li>
+                            <li>Swap scenes without rewiring the physical layout.</li>
+                            <li>Future-proof for higher-order expansion and AR overlays.</li>
+                        </ul>
+                    </div>
+                    <div class="ambisonics-card" data-animate>
+                        <h3>Field-proven signal chain</h3>
+                        <dl>
+                            <div>
+                                <dt>Encode</dt>
+                                <dd>Phone, DAW, or AI stem → FOA scene pack.</dd>
+                            </div>
+                            <div>
+                                <dt>Distribute</dt>
+                                <dd>Wi-Fi UDP multicast with RTP-style timestamps.</dd>
+                            </div>
+                            <div>
+                                <dt>Render</dt>
+                                <dd>Per-jar DSP, EQ, and amplifier output at 48 kHz.</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vessel" class="vessel">
+            <div class="container">
+                <div class="section-header narrow">
+                    <p class="section-eyebrow">Why a mason jar?</p>
+                    <h2>The vessel is part lantern, part resonant chamber.</h2>
+                    <p>The wide-mouth mason jar is iconic, airtight, and acoustically predictable. It protects electronics, diffuses LEDs, and feels at home in forests or sanctuaries. Stainless rods double as structure and wiring, while the lid becomes a mesh diffuser for touch, light, or weather data.</p>
+                </div>
+                <div class="inspiration-grid">
+                    <div class="inspiration-card" data-animate>
+                        <h3>Lantern lineage</h3>
+                        <p>Reference tea lanterns, fireflies, and ritual vessels. Each jar glows with the sound it emits.</p>
+                    </div>
+                    <div class="inspiration-card" data-animate>
+                        <h3>Durable shell</h3>
+                        <p>Gasketed lid, stainless hardware, and internal baffles keep water, soil, and curious hands out.</p>
+                    </div>
+                    <div class="inspiration-card" data-animate>
+                        <h3>Acoustic benefit</h3>
+                        <p>Cylindrical enclosure supports opposing drivers for noise cancellation and deep bass.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">How it works</p>
+                    <h2>Three steps from inspiration to spatial sound.</h2>
+                    <p>A simple diagram to share with collaborators and clients.</p>
+                </div>
+                <div class="how-diagram">
+                    <div class="how-node" data-animate>
+                        <div class="node-number">1</div>
+                        <h3>Capture or generate</h3>
+                        <p>Field recordists, DAW scenes, or AI sound engines create an ambisonic or stereo source.</p>
+                        <span>Phone / laptop / app</span>
+                    </div>
+                    <div class="how-node" data-animate>
+                        <div class="node-number">2</div>
+                        <h3>Transmit across the mesh</h3>
+                        <p>Wi-Fi UDP multicast (or ESP-NOW) moves the FOA stream + control packets across all nodes.</p>
+                        <span>Mesh controller or master jar</span>
+                    </div>
+                    <div class="how-node" data-animate>
+                        <div class="node-number">3</div>
+                        <h3>Render inside each vessel</h3>
+                        <p>Every jar decodes its own coefficients, applies EQ/limiting, and outputs to the dual drivers.</p>
+                        <span>ESP32-S3 + TAS5805M (production)</span>
+                    </div>
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-card" data-animate>
+                        <h4>Network layer</h4>
+                        <ul>
+                            <li>UDP multicast audio + timestamps.</li>
+                            <li>Control plane via ESP-NOW or Wi-Fi unicast.</li>
+                            <li>10–30 ms jitter buffer keeps phase coherent.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card" data-animate>
+                        <h4>DSP per node</h4>
+                        <ul>
+                            <li>FOA decode → biquad EQ → limiter.</li>
+                            <li>BME688 + IMU hooks for responsive cues.</li>
+                            <li>I²S out to TAS5805M Class-D amplifier.</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card" data-animate>
+                        <h4>Creative tools</h4>
+                        <ul>
+                            <li>Scene packs for forest, gallery, ritual.</li>
+                            <li>Scheduling + zone-aware fades.</li>
+                            <li>Map editor for trails, domes, or mini rooms.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Key capabilities</p>
+                    <h2>Magical tech that stays invisible to guests.</h2>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card" data-animate>
+                        <h3>Forest deployable</h3>
+                        <p>Stake jars into soil, hang from branches, or hide along pathways. Weather-ready mesh lid and gasket protect the core.</p>
+                    </article>
+                    <article class="feature-card" data-animate>
+                        <h3>Ambisonic spatial audio</h3>
+                        <p>FOA decoding per jar keeps voices and textures drifting naturally without centralized rigs.</p>
+                    </article>
+                    <article class="feature-card" data-animate>
+                        <h3>Wi-Fi synchronization</h3>
+                        <p>UDP multicast plus timestamped buffers keeps every jar locked to the same downbeat.</p>
+                    </article>
+                    <article class="feature-card" data-animate>
+                        <h3>Bluetooth + app input</h3>
+                        <p>Stream from a phone or route stems from Ableton/Unreal into the same field kit.</p>
+                    </article>
+                    <article class="feature-card" data-animate>
+                        <h3>Local DSP + sensing</h3>
+                        <p>Per-node EQ, limiter, LEDs, and sensors enable rituals that react to weather, breath, or touch.</p>
+                    </article>
+                    <article class="feature-card" data-animate>
+                        <h3>USB-C PD power</h3>
+                        <p>Standard PD triggers negotiate 12 V for the amp while powering the ESP32 stack safely.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="scenarios" class="scenarios">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Scenarios</p>
+                    <h2>Where Atma already shines.</h2>
+                </div>
+                <div class="scenario-grid">
+                    <div class="scenario-card" data-animate>
+                        <h3>Indoors</h3>
+                        <ul>
+                            <li>Meditation domes with breathing cues that orbit the room.</li>
+                            <li>Ambient AI-generated sound that layers with live instruments.</li>
+                            <li>Spatial music residencies and gallery corridors.</li>
+                            <li>Dynamic lighting and audio scenes for hospitality suites.</li>
+                        </ul>
+                    </div>
+                    <div class="scenario-card" data-animate>
+                        <h3>Outdoors</h3>
+                        <ul>
+                            <li>Forest installations mapped across multi-acre paths.</li>
+                            <li>Map-based storytelling that guides guests via sound sprites.</li>
+                            <li>Weather-reactive soundscapes using BME688 + wind cues.</li>
+                            <li>"Spirits" hopping from jar to jar during rituals and night walks.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bom" class="bom">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Bill of materials</p>
+                    <h2>Prototype to production in two snapshots.</h2>
+                    <p>Share these tables with collaborators, vendors, or grant reviewers.</p>
+                </div>
+                <div class="bom-grid">
+                    <div class="bom-card" data-animate>
+                        <h3>Prototype BOM (M5Stack-based)</h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Core controller</td>
+                                    <td>M5Stack Core S3 Lite</td>
+                                </tr>
+                                <tr>
+                                    <td>Audio IO</td>
+                                    <td>M5 audio module + I²S amplifier</td>
+                                </tr>
+                                <tr>
+                                    <td>Drivers</td>
+                                    <td>Dual 2" 15 W isobaric drivers</td>
+                                </tr>
+                                <tr>
+                                    <td>DSP (optional)</td>
+                                    <td>External ADAU1701 module</td>
+                                </tr>
+                                <tr>
+                                    <td>Sensing</td>
+                                    <td>BME688 air + forest sensing</td>
+                                </tr>
+                                <tr>
+                                    <td>Enclosure</td>
+                                    <td>Mesh lid, wide-mouth jar, gasket + stainless hardware</td>
+                                </tr>
+                                <tr>
+                                    <td>Power</td>
+                                    <td>USB-C PD trigger → 12 V rail</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bom-card" data-animate>
+                        <h3>Production BOM (custom PCB)</h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>MCU</td>
+                                    <td>ESP32-S3 (native Wi-Fi/BLE)</td>
+                                </tr>
+                                <tr>
+                                    <td>Amp</td>
+                                    <td>TAS5805M Class-D amplifier</td>
+                                </tr>
+                                <tr>
+                                    <td>DSP tier</td>
+                                    <td>ADAU1701 or firmware-only, depending on kit</td>
+                                </tr>
+                                <tr>
+                                    <td>Power</td>
+                                    <td>USB-C PD trigger (12 V) + regulation</td>
+                                </tr>
+                                <tr>
+                                    <td>Interaction</td>
+                                    <td>Custom flex for touch ring + LED halo</td>
+                                </tr>
+                                <tr>
+                                    <td>Protection</td>
+                                    <td>Waterproof cage + tuned acoustic chamber</td>
+                                </tr>
+                                <tr>
+                                    <td>Connectivity</td>
+                                    <td>Wi-Fi mesh, UDP sync, optional LTE uplink</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="roadmap">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Development roadmap</p>
+                    <h2>From field prototypes to living ecosystems.</h2>
+                </div>
+                <div class="timeline-grid">
+                    <article class="timeline-card" data-animate>
+                        <header>
+                            <span class="label">0.9 · Now shipping</span>
+                            <h3>Prototype kit</h3>
+                        </header>
+                        <ul>
+                            <li>M5Stack electronics + dual-driver jars.</li>
+                            <li>Outdoor-safe lid + mesh diffuser.</li>
+                            <li>Wi-Fi streaming + Bluetooth master.</li>
+                        </ul>
+                    </article>
+                    <article class="timeline-card" data-animate>
+                        <header>
+                            <span class="label">1.0 · Production</span>
+                            <h3>Custom PCB</h3>
+                        </header>
+                        <ul>
+                            <li>ESP32-S3, TAS5805M, integrated DSP.</li>
+                            <li>USB-C PD 12 V, waterproofing, LED ambiance.</li>
+                            <li>Mesh networking + auto scene deployment.</li>
+                        </ul>
+                    </article>
+                    <article class="timeline-card" data-animate>
+                        <header>
+                            <span class="label">1.1+ · Future</span>
+                            <h3>Living ecosystems</h3>
+                        </header>
+                        <ul>
+                            <li>Phone-based spatial positioning + AR placement.</li>
+                            <li>Weather-reactive audio + wandering spirits.</li>
+                            <li>WorkAdventure + Workrooms integration for remote installs.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Gallery</p>
+                    <h2>Renders + real prototypes to feature.</h2>
+                    <p>Drop final PNG/WebP files named in each card into the <code>images/</code> folder.</p>
+                </div>
+                <div class="gallery-grid">
+                    <figure class="gallery-card" data-animate>
+                        <div class="visual-placeholder" data-image="images/atma-forest-dusk.jpg">
+                            <span>Forest dusk render · glowing jars under redwoods</span>
+                        </div>
+                        <figcaption>Hero render suggestion: forest at dusk with five jars emitting teal + amber light.</figcaption>
+                    </figure>
+                    <figure class="gallery-card" data-animate>
+                        <div class="visual-placeholder" data-image="images/atma-living-room.jpg">
+                            <span>Living room lifestyle · jars on shelves + floor</span>
+                        </div>
+                        <figcaption>Lifestyle image: indoor loft with jars forming a circular sound bath.</figcaption>
+                    </figure>
+                    <figure class="gallery-card" data-animate>
+                        <div class="visual-placeholder" data-image="images/atma-desk-prototype.jpg">
+                            <span>Desk vignette · exposed electronics + jar lid</span>
+                        </div>
+                        <figcaption>Prototype photo: exploded view showing isobaric drivers, PCB, and mesh lid.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="kits" class="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Project-ready kits</p>
+                    <h2>Reserve your production slot with a refundable $99 deposit.</h2>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card" data-animate>
+                        <div class="plan-badge">Launch</div>
+                        <h3>Creator Starter</h3>
+                        <p>Single-node kit for micro galleries and rapid prototyping.</p>
+                        <div class="price-tag">
+                            <span>$99</span>
+                            <small>per node deposit</small>
+                        </div>
+                        <ul class="pricing-list">
+                            <li>1 Atma jar with FOA decoding</li>
+                            <li>USB-C power + desk stand</li>
+                            <li>Indoor ritual + wellness scene packs</li>
+                        </ul>
+                        <form class="preorder-form checkout-form" data-checkout-form>
+                            <div class="form-group">
+                                <input type="email" name="creatorEmail" placeholder="Work email" required>
+                                <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_creator_starter" data-product-name="Atma Creator Starter" data-product-description="Creator Starter Kit deposit">Reserve Kit</button>
+                            </div>
+                            <p class="micro-copy">Stripe checkout · ships Q2 2025</p>
+                        </form>
+                    </div>
+                    <div class="pricing-card highlight" data-animate>
+                        <div class="plan-badge accent">Field</div>
+                        <h3>Field Kit</h3>
+                        <p>Three synchronized jars for galleries, courtyards, or guided treks.</p>
+                        <div class="price-tag">
+                            <span>$297</span>
+                            <small>deposit for 3 nodes</small>
+                        </div>
+                        <ul class="pricing-list">
+                            <li>3 jars + mesh networking hub</li>
+                            <li>Onboarding with our sonic producer</li>
+                            <li>Trail + zone mapping templates</li>
+                        </ul>
+                        <form class="preorder-form checkout-form" data-checkout-form>
+                            <div class="form-group">
+                                <input type="email" name="fieldEmail" placeholder="Team email" required>
+                                <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_field_kit" data-product-name="Atma Field Kit" data-product-description="Field Kit deposit for 3 nodes">Reserve Kit</button>
+                            </div>
+                            <p class="micro-copy">Includes collaborative design session</p>
+                        </form>
+                    </div>
+                    <div class="pricing-card" data-animate>
+                        <div class="plan-badge">Enterprise</div>
+                        <h3>Custom Experience</h3>
+                        <p>Large-scale deployments for trails, museums, and smart parks.</p>
+                        <div class="price-tag">
+                            <span>Custom</span>
+                            <small>volume-based</small>
+                        </div>
+                        <ul class="pricing-list">
+                            <li>10+ jars with waterproof enclosures</li>
+                            <li>On-site calibration + training</li>
+                            <li>API + sensor integrations</li>
+                        </ul>
+                        <form class="preorder-form checkout-form" data-checkout-form>
+                            <div class="form-group">
+                                <input type="email" name="enterpriseEmail" placeholder="Company email" required>
+                                <button type="submit" class="btn btn-primary" data-checkout-button data-price-id="price_enterprise_reservation" data-product-name="Atma Enterprise Reservation" data-product-description="Enterprise deployment deposit">Reserve Production</button>
+                            </div>
+                            <p class="micro-copy">We confirm scope within 24 hours</p>
                         </form>
                     </div>
                 </div>
-                
-                <div class="cta-features">
-                    <div class="cta-feature">✓ Secure Payment</div>
-                    <div class="cta-feature">✓ Modular Design</div>
-                    <div class="cta-feature">✓ Open Source</div>
+            </div>
+        </section>
+
+        <section id="interest" class="interest">
+            <div class="container">
+                <div class="interest-grid">
+                    <div class="interest-copy">
+                        <p class="section-eyebrow">Interest list</p>
+                        <h2>Want an Atma vessel for your home, studio, or forest?</h2>
+                        <p>Tell us where you plan to deploy it. We share build diaries, acoustic research, and early install slots with this list first.</p>
+                        <ul>
+                            <li>Studios + galleries planning 2025 shows.</li>
+                            <li>Forest stewards and retreat centers.</li>
+                            <li>Researchers exploring ambient computing.</li>
+                        </ul>
+                        <p class="micro-copy">Prefer GitHub Issues or email? Reach out via <a href="mailto:hello@atma.audio">hello@atma.audio</a>.</p>
+                    </div>
+                    <div class="interest-form">
+                        <form class="preorder-form" id="emailForm">
+                            <div class="form-group">
+                                <input type="email" id="emailSubscribe" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="useCase" placeholder="Planned location or use case (optional)">
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Join the early list</button>
+                        </form>
+                        <p class="form-note">We send 2–3 updates per month with progress videos and sonic sketches.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="logo">Atma</div>
-                    <p>Distributed ambient audio field system for immersive experiences.</p>
+                    <p>Distributed ambient audio vessels for immersive environments.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Product</h4>
+                    <h4>Navigate</h4>
                     <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#specs">Specifications</a></li>
-                        <li><a href="#testimonials">Use Cases</a></li>
+                        <li><a href="#hero">Hero</a></li>
+                        <li><a href="#what-is-atma">Story</a></li>
+                        <li><a href="#how-it-works">How it works</a></li>
+                        <li><a href="#roadmap">Roadmap</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="ATMA.md">Documentation</a></li>
+                        <li><a href="ATMA.md">Prototype brief</a></li>
                         <li><a href="README.md">README</a></li>
-                        <li><a href="https://github.com">GitHub</a></li>
+                        <li><a href="https://github.com/dcmcshan/Atma">GitHub</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Support</h4>
+                    <h4>Contact</h4>
                     <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="mailto:hello@atma.audio">hello@atma.audio</a></li>
+                        <li><a href="#interest">Join interest list</a></li>
+                        <li><a href="#kits">Reserve kit</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Atma. All rights reserved.</p>
+                <p>&copy; 2025 Atma. Crafted with ambisonic care.</p>
             </div>
         </div>
     </footer>
