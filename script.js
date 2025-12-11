@@ -102,40 +102,38 @@ if (emailForm) {
     emailForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const emailInput = document.getElementById('emailSubscribe');
+        const useCaseInput = document.getElementById('useCase');
         const email = emailInput.value.trim();
+        const useCase = useCaseInput ? useCaseInput.value.trim() : '';
         const submitButton = this.querySelector('button[type="submit"]');
         const originalButtonText = submitButton.textContent;
         
-        // Validate email
         if (!email || !email.includes('@')) {
             showMessage('Please enter a valid email address.', 'error', emailForm);
             return;
         }
         
-        // Disable button and show loading state
         submitButton.disabled = true;
         submitButton.textContent = 'Subscribing...';
         
         try {
-            // Use email subscription endpoint
             const endpoint = CONFIG.EMAIL_API_ENDPOINT || '/api/subscribe';
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email: email })
+                body: JSON.stringify({ email, useCase })
             });
             
-            if (response.ok) {
-                showMessage(`Thank you! We'll send updates to ${email}.`, 'success', emailForm);
-                this.reset();
-            } else {
+            if (!response.ok) {
                 throw new Error('Subscription failed');
             }
+            
+            showMessage(`Thank you! We'll send updates to ${email}.`, 'success', emailForm);
+            this.reset();
         } catch (error) {
             console.error('Subscription error:', error);
-            // Fallback: show success message even if API fails
             showMessage(`Thank you! We'll send updates to ${email}.`, 'success', emailForm);
             this.reset();
         } finally {
@@ -203,13 +201,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
     
-    // Observe feature cards and testimonial cards
-    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .spec-item');
+    const animatedElements = document.querySelectorAll('[data-animate]');
     
     animatedElements.forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
-        el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        el.style.transition = `opacity 0.6s ease ${index * 0.08}s, transform 0.6s ease ${index * 0.08}s`;
         observer.observe(el);
     });
 });

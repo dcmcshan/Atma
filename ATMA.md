@@ -1,184 +1,136 @@
-# Atma: A Distributed Ambient Audio Field System
+# Atma · Ambisonic Vessels
 
-A network of magical "sound jars" that render a shared spatial soundfield using ESP32 nodes, Bluetooth audio, and Wi-Fi synchronization.
-
----
-
-## 1. Overview
-
-Atma is a modular, forest-deployable audio installation composed of many small speaker "jars," each powered by an ESP32 and a compact amplifier.
-Together, they create a living ambient ecosystem of motion, voices, spirits, and environmental textures that move fluidly from jar to jar.
-
-Each Atma node:
-  •  Plays audio
-  •  Computes its own DSP
-  •  Receives spatial control signals
-  •  Syncs to all other jars
-  •  Emits unique localized sound according to its place in the environment
-
-The result is a distributed, immersive, location-aware sound field.
+A living field kit of glowing mason jars that decode ambisonic sound locally and bathe forests, domes, and rituals in responsive audio.
 
 ---
 
-## 2. Hardware Architecture
+## Hero Story
+**Eyebrow:** Prototype 0.9 · Hand-built in Mendocino · Ambisonic field kit  
+**Headline:** Atma Ambisonic Vessels  
+**Subhead:** Distributed immersive audio lives inside a mason jar. Map glowing sound to forests, domes, and rituals without scaffolding or cables.
 
-### 2.1 Node Structure (Per Jar)
+**Supporting bullets:**
+- **Distributed:** Each vessel decodes its own slice of the ambisonic field.
+- **Sculptable:** Sync AI ambience, FOA stems, or sensor-triggered scenes.
+- **Field-ready:** Weather-tolerant lids, USB-C PD power, carry-on cases.
 
-Each jar contains:
-  •  ESP32 (Classic) — provides Bluetooth A2DP sink, Wi-Fi, and DSP
-  •  I²S DAC (PCM5102, ES8388, AC101, etc.)
-  •  Audio amplifier (TPA3116, PAM8610, etc.)
-  •  1–3 small full-range drivers arranged vertically
-  •  12 V power rail (USB-C PD trigger → 12 V)
-  •  Local LEDs or IMU sensors (optional)
-  •  Rigid internal baffles separating drivers from electronics
+**Primary CTA:** Reserve Prototype – $99 (Stripe Checkout)  
+**Secondary CTA:** Download Prototype Brief (links to this file)  
+**Tertiary CTA:** Preview concept renders (jumps to gallery)
 
-The jar uses four M3 threaded rods as both mechanical structure and wiring harness.
-
-### 2.2 Power System
-  •  USB-C PD trigger negotiates 12 V
-  •  12 V rail powers the amplifier directly
-  •  Core ESP32 receives regulated 5 V or 3.3 V
-  •  Power distribution and filtering handled by a custom Atma PD module
-
-No M5Stack or ESP32 bus pin carries 12 V.
+Hero render notes: glowing jars breathing in a redwood grove at dusk, teal/amber gradients, soft fog, firefly bloom.
 
 ---
 
-## 3. Audio Pipeline
+## What Is Atma?
+Atma is a networked ambisonic speaker disguised as a lantern. Each vessel hides a dual-driver isobaric stack, ESP32 brain, and weather-ready enclosure. Multiple jars synchronize wirelessly to paint a living sound field indoors or outdoors.
 
-### 3.1 Input Sources
-  1.  Bluetooth A2DP → One "Master" Jar
-  •  Phone streams stereo audio over BT
-  •  The Master Node decodes SBC and publishes the audio over Wi-Fi
-  2.  Wi-Fi Stream (Direct from Controller)
-  •  Phone or central computer can broadcast PCM/Opus over LAN
-  •  Used for multi-node synchronized playback
-  3.  On-Node Sounds
-  •  Procedural textures
-  •  Triggered effects
-  •  Ambient loops stored locally
-
-### 3.2 Spatial Rendering Model
-
-Atma uses First-Order Ambisonics (FOA) to represent the soundfield:
-  •  Four channels: W, X, Y, Z
-  •  Jars perform local FOA → speaker decoding
-  •  Results in spatialized sound emerging from many jars as a single field
-
-Each jar receives:
-  •  Shared audio stream (WXYZ or stereo)
-  •  Node position
-  •  Virtual sound source positions
-  •  Per-jar gain, EQ, delay, or movement vectors
-
-Each jar renders its own local stereo (or mono) output via:
-
-Left  = aW + bX + cY + dZ
-Right = eW + fX + gY + hZ
-
-This yields:
-  •  Coherent, environment-wide spatial textures
-  •  Spirits, animals, or ambient objects moving from jar to jar
-  •  Smooth diffusion and localized presence
+Key proof points:
+- Dual-driver core: opposed 2" 15 W drivers deliver low-end within a jar footprint.
+- Isomorphic scenes: author once and deploy to trails, domes, or rituals with zone-aware fades.
+- Open toolkit: Wi-Fi/UDP sync, sensor hooks, and scene templates in a single Pelican case.
 
 ---
 
-## 4. Network Synchronization
+## Why Ambisonics?
+FOA (First-Order Ambisonics) encodes the entire 3D soundfield into WXYZ channels so a single stream can power dozens of jars without a central speaker array.
 
-### 4.1 Transport Layer
-  •  Audio packets transmitted over Wi-Fi UDP multicast
-  •  Control packets sent via Wi-Fi unicast or ESP-NOW
-  •  Optional RTP-style timestamps
+Benefits:
+- Phase-coherent drift as textures move jar to jar.
+- Swap scenes without rewiring the layout.
+- Ready for higher-order or AR overlays.
 
-### 4.2 Sync Strategy
-
-Each jar:
-  •  Maintains a local sample clock
-  •  Buffers 10–30 ms to smooth network jitter
-  •  Aligns playback using timestamps
-
-This yields phase-coherent playback across all nodes.
+**Signal Chain:** Encode (DAW/phone/AI) → Distribute (Wi-Fi UDP multicast + timestamps) → Render (per-jar DSP to dual drivers).
 
 ---
 
-## 5. Master Node Responsibilities
+## Why a Mason Jar?
+The wide-mouth mason jar is iconic, airtight, and acoustically predictable. It protects electronics, diffuses LEDs, and belongs naturally in forests or sanctuaries.
 
-The Master Node (any jar or dedicated controller) performs:
-  •  Bluetooth audio decoding (if used)
-  •  Spatial scene computation
-  •  FOA encoding or per-node decoding coefficients
-  •  Audio stream distribution
-  •  Node management and heartbeat
-  •  Clock sync
-
-The system can operate:
-  •  With a single master jar
-  •  With a phone-based controller
-  •  Fully distributed with leader election (future expansion)
+- **Lantern lineage:** Tea lanterns, fireflies, and ritual vessels inspire the glowing aesthetic.
+- **Durable shell:** Gasketed lid, stainless hardware, and internal baffles defend against weather and curious hands.
+- **Acoustic benefit:** Cylindrical volume supports opposing drivers for noise cancellation and deep bass.
 
 ---
 
-## 6. DSP Pipeline (Per Node)
+## How It Works — Three Steps
+1. **Capture or generate.** Field recordings, DAW stems, or AI engines produce an ambisonic or stereo source.
+2. **Transmit across the mesh.** Wi-Fi UDP multicast (or ESP-NOW) moves the FOA stream and control packets to every jar.
+3. **Render inside each vessel.** ESP32-S3 decodes coefficients, applies EQ/limiting, and outputs through the dual drivers.
 
-Each jar performs:
-  1.  Audio receive & buffer
-  2.  Spatial decode (FOA matrix multiply)
-  3.  Gain staging
-  4.  Biquad filters (EQ, compensation for jar enclosure)
-  5.  Soft limiter
-  6.  I²S output → DAC → amplifier → speakers
-
-This DSP load is comfortably within the capability of a standard ESP32 at 48 kHz.
+Supporting details:
+- Network layer: UDP multicast audio + timestamps, control plane via ESP-NOW/unicast, 10–30 ms jitter buffer.
+- DSP per node: FOA decode → biquad EQ → limiter, sensors (BME688/IMU), I²S into TAS5805M.
+- Creative tools: scene packs for forest/gallery/ritual, scheduling, zone-aware fades, map editor.
 
 ---
 
-## 7. System Behavior in a Forest or Installation
-
-Atma nodes create a distributed sonic organism:
-  •  Ambient textures drift between jars
-  •  Voices or fairy sounds "travel"
-  •  Harmonics shimmer across multiple points
-  •  The field responds to movement or timed sequences
-  •  Each jar fades in/out according to proximity or theme
-
-Placed in trees, along paths, or throughout a garden, Atma becomes:
-  •  A responsive musical environment
-  •  A sound sculpture
-  •  An enchanted audio ecosystem
+## Key Features
+1. **Forest deployable.** Stake, hang, or hide jars; mesh lid + gasket keep them weather ready.
+2. **Ambisonic spatial audio.** FOA decoding per jar keeps voices/textures drifting naturally.
+3. **Wi-Fi synchronization.** UDP multicast with timestamps ensures phase-coherent playback.
+4. **Bluetooth + app input.** Stream from phone or route stems from Ableton/Unreal.
+5. **Local DSP + sensing.** EQ, limiter, LEDs, and sensors react to weather, breath, or touch.
+6. **USB-C PD power.** Standard PD triggers negotiate 12 V for the amp and regulate MCU rails.
 
 ---
 
-## 8. Project Goals
-  •  Simple deployment: jars powered by USB-C PD
-  •  Modular architecture: add or remove jars freely
-  •  Self-contained nodes: no single point of failure
-  •  Flexible content engine
-  •  Support for ritual, meditation, performance, and ambient installations
-  •  Blend of Bluetooth convenience + Wi-Fi distributed audio
+## Scenarios
+**Indoors**
+- Meditation domes with breathing cues orbiting the room.
+- Ambient AI-generated sound layered with live instruments.
+- Spatial music residencies and gallery corridors.
+- Dynamic lighting + audio rituals for hospitality suites.
+
+**Outdoors**
+- Forest installations mapped across multi-acre trails.
+- Map-based storytelling that guides guests via sound sprites.
+- Weather-reactive soundscapes using BME688 + wind cues.
+- “Spirits” hopping from jar to jar during rituals/night walks.
 
 ---
 
-## 9. Future Extensions
-  •  GPS or UWB positioning for dynamic spatial mapping
-  •  Light-synchronized effects
-  •  Environmental sensing (BME688 VOC, humidity, temp)
-  •  AI-generated sound sprites
-  •  Higher-order Ambisonics
-  •  Solar charging and weatherproof housings
+## Bill of Materials
+### Prototype BOM (M5Stack-based)
+| Subsystem      | Components |
+| -------------- | ---------- |
+| Core controller | M5Stack Core S3 Lite |
+| Audio IO | M5 audio module + I²S amplifier |
+| Drivers | Dual 2" 15 W isobaric drivers |
+| DSP (optional) | ADAU1701 breakout |
+| Sensing | BME688 air + forest sensing |
+| Enclosure | Mesh lid, wide-mouth jar, gasket, stainless hardware |
+| Power | USB-C PD trigger → 12 V rail |
+
+### Production BOM (custom PCB)
+| Subsystem | Components |
+| --------- | ---------- |
+| MCU | ESP32-S3 |
+| Amplifier | TAS5805M Class-D |
+| DSP tier | ADAU1701 or firmware-only mode |
+| Power | USB-C PD trigger (12 V) + regulation |
+| Interaction | Custom flex with touch ring + LED halo |
+| Protection | Waterproof cage + tuned acoustic chamber |
+| Connectivity | Wi-Fi mesh, UDP sync, optional LTE uplink |
 
 ---
 
-## 10. Summary
+## Development Roadmap
+- **0.9 Prototype (now):** M5Stack electronics, isobaric speaker, outdoor-safe lid, basic Wi-Fi streaming.
+- **1.0 Production:** Custom PCB, ESP32-S3 + TAS5805M, USB-C PD 12 V, integrated DSP, waterproofing, LED ambiance, multi-speaker mesh networking.
+- **1.1+ Future:** Phone-based spatial positioning, weather-reactive audio, AR placement (WorkAdventure), wandering “spirit” sound FX between nodes.
 
-Atma is a distributed ambisonic audio network using small speaker jars as intelligent nodes.
-Each node renders spatialized sound locally while staying synchronized with all other nodes.
+---
 
-By combining:
-  •  ESP32 Bluetooth audio decoding,
-  •  Wi-Fi-based audio distribution,
-  •  Local DSP,
-  •  Modular jar hardware,
-  •  Lightweight FOA spatial math,
+## Gallery Prompts
+1. **Forest dusk render:** Five jars glowing teal/amber under redwoods, foggy light, thin mandala overlay.
+2. **Living room lifestyle:** Circular arrangement in a loft or wellness studio with soft gradients and textile textures.
+3. **Desk vignette / exploded view:** Components hovering above the jar lid showing isobaric drivers, PCB, PD trigger.
 
-Atma creates a flexible, magical, and scalable audio ecosystem suitable for forests, art installations, and immersive experiences.
+Include subtle mandala line art, circular motifs, and gradients (indigo → gold → teal).
+
+---
+
+## Interest CTA
+“Want an Atma vessel for your home, studio, or forest? Join the early list.”  
+Collect email + optional use case; share updates 2–3 times per month; offer alternate contact via hello@atma.audio.
