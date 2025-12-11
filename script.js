@@ -31,17 +31,103 @@ window.addEventListener('scroll', () => {
 // Pre-order form handling
 const preorderForm = document.getElementById('preorderForm');
 if (preorderForm) {
-    preorderForm.addEventListener('submit', function(e) {
+    preorderForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const email = document.getElementById('email').value;
+        const emailInput = document.getElementById('email');
+        const email = emailInput.value.trim();
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
         
-        // Here you would typically send this to a backend
-        // For now, we'll just show a success message
-        alert(`Thank you! We'll notify ${email} when Atma is ready to ship.`);
+        // Validate email
+        if (!email || !email.includes('@')) {
+            showMessage('Please enter a valid email address.', 'error');
+            return;
+        }
         
-        // Reset form
-        this.reset();
+        // Disable button and show loading state
+        submitButton.disabled = true;
+        submitButton.textContent = 'Subscribing...';
+        
+        try {
+            // Option 1: Use MailerLite frontend API (if using MailerLite)
+            if (typeof CONFIG !== 'undefined' && CONFIG.PUBLISHABLE_KEY) {
+                const response = await fetch('https://api.mailerlite.com/api/v2/subscribers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-MailerLite-ApiKey': CONFIG.PUBLISHABLE_KEY
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        groups: [] // Add group IDs if needed
+                    })
+                });
+                
+                if (response.ok) {
+                    showMessage(`Thank you! We'll notify ${email} when Atma is ready.`, 'success');
+                    this.reset();
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Subscription failed');
+                }
+            } 
+            // Option 2: Use custom backend endpoint
+            else if (typeof CONFIG !== 'undefined' && CONFIG.API_ENDPOINT) {
+                const response = await fetch(CONFIG.API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+                
+                if (response.ok) {
+                    showMessage(`Thank you! We'll notify ${email} when Atma is ready.`, 'success');
+                    this.reset();
+                } else {
+                    throw new Error('Subscription failed');
+                }
+            }
+            // Fallback: Show success message (for development)
+            else {
+                showMessage(`Thank you! We'll notify ${email} when Atma is ready.`, 'success');
+                this.reset();
+                console.log('Email for subscription:', email);
+            }
+        } catch (error) {
+            console.error('Subscription error:', error);
+            showMessage('Something went wrong. Please try again later.', 'error');
+        } finally {
+            // Re-enable button
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        }
     });
+}
+
+// Show message to user
+function showMessage(message, type = 'success') {
+    // Remove existing messages
+    const existingMessage = document.querySelector('.form-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Create message element
+    const messageEl = document.createElement('div');
+    messageEl.className = `form-message form-message-${type}`;
+    messageEl.textContent = message;
+    
+    // Insert after form
+    const form = document.getElementById('preorderForm');
+    if (form) {
+        form.parentNode.insertBefore(messageEl, form.nextSibling);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            messageEl.remove();
+        }, 5000);
+    }
 }
 
 // Intersection Observer for fade-in animations
