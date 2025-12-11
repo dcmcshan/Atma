@@ -28,77 +28,7 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Initialize Stripe
-let stripe = null;
-if (typeof Stripe !== 'undefined' && typeof CONFIG !== 'undefined' && CONFIG.STRIPE_PUBLISHABLE_KEY) {
-    stripe = Stripe(CONFIG.STRIPE_PUBLISHABLE_KEY);
-}
-
-// Payment form handling (Stripe Checkout)
-const paymentForm = document.getElementById('paymentForm');
-if (paymentForm) {
-    paymentForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const emailInput = document.getElementById('email');
-        const email = emailInput.value.trim();
-        const checkoutButton = document.getElementById('checkout-button');
-        const originalButtonText = checkoutButton.textContent;
-        
-        // Validate email
-        if (!email || !email.includes('@')) {
-            showMessage('Please enter a valid email address.', 'error', paymentForm);
-            return;
-        }
-        
-        // Check if Stripe is initialized
-        if (!stripe) {
-            showMessage('Payment system not configured. Please contact support.', 'error', paymentForm);
-            return;
-        }
-        
-        // Disable button and show loading state
-        checkoutButton.disabled = true;
-        checkoutButton.textContent = 'Processing...';
-        
-        try {
-            // Create checkout session via backend
-            const response = await fetch(CONFIG.CREATE_CHECKOUT_ENDPOINT || '/api/create-checkout-session', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    priceId: CONFIG.PRODUCT.priceId,
-                    productName: CONFIG.PRODUCT.name,
-                    productDescription: CONFIG.PRODUCT.description
-                })
-            });
-            
-            if (!response.ok) {
-                throw new Error('Failed to create checkout session');
-            }
-            
-            const session = await response.json();
-            
-            // Redirect to Stripe Checkout
-            const result = await stripe.redirectToCheckout({
-                sessionId: session.id
-            });
-            
-            if (result.error) {
-                throw new Error(result.error.message);
-            }
-        } catch (error) {
-            console.error('Checkout error:', error);
-            showMessage(error.message || 'Something went wrong. Please try again later.', 'error', paymentForm);
-            checkoutButton.disabled = false;
-            checkoutButton.textContent = originalButtonText;
-        }
-    });
-}
-
-// Email-only subscription form
+// Email subscription form
 const emailForm = document.getElementById('emailForm');
 if (emailForm) {
     emailForm.addEventListener('submit', async function(e) {
@@ -119,21 +49,27 @@ if (emailForm) {
         submitButton.textContent = 'Subscribing...';
         
         try {
-            // Use email subscription endpoint
-            const endpoint = CONFIG.EMAIL_API_ENDPOINT || '/api/subscribe';
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: email })
-            });
-            
-            if (response.ok) {
+            // Use email subscription endpoint if configured
+            if (typeof CONFIG !== 'undefined' && CONFIG.EMAIL_API_ENDPOINT) {
+                const response = await fetch(CONFIG.EMAIL_API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+                
+                if (response.ok) {
+                    showMessage(`Thank you! We'll send updates to ${email}.`, 'success', emailForm);
+                    this.reset();
+                } else {
+                    throw new Error('Subscription failed');
+                }
+            } else {
+                // Fallback: show success message (for development)
                 showMessage(`Thank you! We'll send updates to ${email}.`, 'success', emailForm);
                 this.reset();
-            } else {
-                throw new Error('Subscription failed');
+                console.log('Email for subscription:', email);
             }
         } catch (error) {
             console.error('Subscription error:', error);
@@ -191,20 +127,8 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Check for payment success/cancel in URL
+// Observe feature cards and testimonial cards
 document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success')) {
-        showMessage('Payment successful! Thank you for your order. We\'ll send you updates via email.', 'success');
-        // Clean URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-    if (urlParams.get('canceled')) {
-        showMessage('Payment canceled. You can try again anytime.', 'error');
-        // Clean URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-    
     // Observe feature cards and testimonial cards
     const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .spec-item');
     
