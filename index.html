@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -247,7 +246,7 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-rating">🌲</div>
-                    <p class="testimonial-text">"Create magical forest installations where ambient textures drift between jars. Voices and sounds travel naturally through the environment, creating an enchanted audio ecosystem."</p>
+                    <p class="testimonial-text">Create magical forest installations where ambient textures drift between jars. Voices and sounds travel naturally through the environment, creating an enchanted audio ecosystem.</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">🌳</div>
                         <div class="author-info">
@@ -258,7 +257,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-rating">🎭</div>
-                    <p class="testimonial-text">"Perfect for performance spaces and galleries. The distributed sound field creates immersive experiences where sound moves fluidly, responding to movement and timed sequences."</p>
+                    <p class="testimonial-text">Perfect for performance spaces and galleries. The distributed sound field creates immersive experiences where sound moves fluidly, responding to movement and timed sequences.</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">🎨</div>
                         <div class="author-info">
@@ -269,7 +268,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-rating">🧘</div>
-                    <p class="testimonial-text">"Ideal for meditation and ritual spaces. Each jar can fade in and out according to proximity or theme, creating a responsive musical environment that enhances the experience."</p>
+                    <p class="testimonial-text">Ideal for meditation and ritual spaces. Each jar can fade in and out according to proximity or theme, creating a responsive musical environment that enhances the experience.</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">✨</div>
                         <div class="author-info">
@@ -287,34 +286,23 @@
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Build Your Audio Ecosystem?</h2>
-                <p>Pre-order your Atma node and join the community creating distributed ambient audio fields.</p>
+                <p>Join the community creating distributed ambient audio fields. Get started with Atma and transform any space into a living soundscape.</p>
                 
-                <!-- Payment Form -->
+                <!-- Email Subscription Form -->
                 <div class="payment-section">
-                    <form class="preorder-form" id="paymentForm">
+                    <form class="preorder-form" id="emailForm">
                         <div class="form-group">
-                            <input type="email" id="email" placeholder="Enter your email" required>
-                            <button type="submit" class="btn btn-primary" id="checkout-button">Pre-Order Now - $99</button>
+                            <input type="email" id="emailSubscribe" placeholder="Enter your email for updates" required>
+                            <button type="submit" class="btn btn-primary">Get Started</button>
                         </div>
-                        <p class="form-note">Secure checkout powered by Stripe. We'll send you updates on shipping and assembly instructions.</p>
+                        <p class="form-note">We'll send you updates on the project, assembly instructions, and how to get involved. No spam, unsubscribe anytime.</p>
                     </form>
-                    
-                    <!-- Alternative: Email-only subscription -->
-                    <div class="email-subscribe-section">
-                        <p class="divider-text">or</p>
-                        <form class="preorder-form" id="emailForm">
-                            <div class="form-group">
-                                <input type="email" id="emailSubscribe" placeholder="Just want updates? Enter email" required>
-                                <button type="submit" class="btn btn-secondary">Get Updates</button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
                 
                 <div class="cta-features">
-                    <div class="cta-feature">✓ Secure Payment</div>
-                    <div class="cta-feature">✓ Modular Design</div>
                     <div class="cta-feature">✓ Open Source</div>
+                    <div class="cta-feature">✓ Modular Design</div>
+                    <div class="cta-feature">✓ Self-Contained Nodes</div>
                 </div>
             </div>
         </div>
@@ -342,15 +330,15 @@
                     <ul>
                         <li><a href="ATMA.md">Documentation</a></li>
                         <li><a href="README.md">README</a></li>
-                        <li><a href="https://github.com">GitHub</a></li>
+                        <li><a href="https://github.com/dcmcshan/Atma">GitHub</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="STRIPE_SETUP.md">Stripe Setup</a></li>
+                        <li><a href="BACKEND_SETUP.md">Backend Setup</a></li>
+                        <li><a href="#contact">Get Started</a></li>
                     </ul>
                 </div>
             </div>
@@ -360,7 +348,6 @@
         </div>
     </footer>
 
-    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
